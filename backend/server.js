@@ -14,11 +14,31 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Complaint Schema
 const ComplaintSchema = new mongoose.Schema({
-  category: String,
-  description: String,
-  priority: String,
-  status: { type: String, default: "Pending" }
-});
+  studentName: {
+    type: String,
+    required: true
+  },
+  roomNumber: {
+    type: String,
+    required: true
+  },
+  category: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  priority: {
+    type: String,
+    required: true
+  },
+  status: {
+    type: String,
+    default: "Pending"
+  }
+}, { timestamps: true });
 
 const Complaint = mongoose.model("Complaint", ComplaintSchema);
 

@@ -1,20 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hostel Complaints</title>
+    <title>Student Complaint Management</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <h1>📋 Student Complaint Management System</h1>
 
-    <h1>Hostel Complaint System</h1>
+        <div class="form-section">
+            <h2>Add New Complaint</h2>
+            <form onsubmit="addComplaint(event)">
+                <input type="text" id="studentName" placeholder="Student Name" required />
+                <input type="text" id="roomNumber" placeholder="Room Number" required />
+                <input type="text" id="complaintText" placeholder="Complaint Description" required />
+                
+                <select id="category">
+                    <option value="Food">Food Quality</option>
+                    <option value="Maintenance">Maintenance</option>
+                    <option value="Hygiene">Hygiene</option>
+                    <option value="Noise">Noise Disturbance</option>
+                    <option value="Other">Other</option>
+                </select>
 
-    <h2>Add Complaint</h2>
-    <input type="text" id="complaintText" placeholder="Enter complaint" />
-    <button onclick="addComplaint()">Submit</button>
+                <select id="priority">
+                    <option value="Low">Low Priority</option>
+                    <option value="Normal">Normal Priority</option>
+                    <option value="High">High Priority</option>
+                    <option value="Urgent">Urgent</option>
+                </select>
 
-    <h2>All Complaints</h2>
-    <ul id="complaintList"></ul>
+                <button type="submit">Submit Complaint</button>
+            </form>
+        </div>
+
+        <div class="complaints-section">
+            <h2>All Complaints</h2>
+            <div id="complaintList" class="complaint-list"></div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
-
 </body>
 </html>

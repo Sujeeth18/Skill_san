@@ -1,0 +1,222 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+h2 {
+    color: #555;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 10px;
+}
+
+.form-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input, select {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+}
+
+button {
+    padding: 12px 20px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #5568d3;
+}
+
+.complaints-section {
+    margin-top: 30px;
+}
+
+.complaint-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.complaint-card {
+    background: #f8f9fa;
+    border-left: 5px solid #667eea;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.complaint-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.complaint-card.urgent {
+    border-left-color: #ff6b6b;
+    background: #ffe0e0;
+}
+
+.complaint-card.high {
+    border-left-color: #ffa94d;
+}
+
+.complaint-header {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    gap: 15px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.complaint-student {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.complaint-room {
+    font-size: 13px;
+    color: #666;
+    margin-top: 4px;
+}
+
+.complaint-id {
+    font-size: 12px;
+    color: #999;
+    font-weight: 600;
+}
+
+.complaint-status {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-resolved {
+    background: #d4edda;
+    color: #155724;
+}
+
+.complaint-priority {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.priority-low {
+    background: #d4edda;
+    color: #155724;
+}
+
+.priority-normal {
+    background: #cfe2ff;
+    color: #084298;
+}
+
+.priority-high {
+    background: #ffeaa7;
+    color: #d63031;
+}
+
+.priority-urgent {
+    background: #ff6b6b;
+    color: white;
+}
+
+.complaint-description {
+    font-size: 15px;
+    color: #333;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.complaint-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 12px;
+    font-size: 13px;
+    color: #666;
+}
+
+.detail-item {
+    padding: 8px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #667eea;
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+    font-size: 16px;
+}
