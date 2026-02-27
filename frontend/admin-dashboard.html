@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard - HostelOps</title>
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Header/Navigation -->
+        <header class="admin-header">
+            <div class="header-content">
+                <h1>📊 HostelOps Admin Dashboard</h1>
+                <div class="admin-info">
+                    <span id="adminName">Admin</span>
+                    <button onclick="adminLogout()" class="logout-btn">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Stats Section -->
+            <section class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalComplaints">0</div>
+                    <div class="stat-label">Total Complaints</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="pendingComplaints">0</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="resolvedComplaints">0</div>
+                    <div class="stat-label">Resolved</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="urgentComplaints">0</div>
+                    <div class="stat-label">Urgent</div>
+                </div>
+            </section>
+
+            <!-- Filter Section -->
+            <section class="filter-section">
+                <div class="filter-group">
+                    <label for="filterStatus">Filter by Status:</label>
+                    <select id="filterStatus" onchange="applyFilters()">
+                        <option value="">All Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Resolved">Resolved</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterCategory">Filter by Category:</label>
+                    <select id="filterCategory" onchange="applyFilters()">
+                        <option value="">All Categories</option>
+                        <option value="Food">Food Quality</option>
+                        <option value="Maintenance">Maintenance</option>
+                        <option value="Hygiene">Hygiene</option>
+                        <option value="Noise">Noise Disturbance</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterPriority">Filter by Priority:</label>
+                    <select id="filterPriority" onchange="applyFilters()">
+                        <option value="">All Priority</option>
+                        <option value="Low">Low</option>
+                        <option value="Normal">Normal</option>
+                        <option value="High">High</option>
+                        <option value="Urgent">Urgent</option>
+                    </select>
+                </div>
+
+                <button onclick="clearFilters()" class="clear-btn">Clear Filters</button>
+            </section>
+
+            <!-- Complaints Table Section -->
+            <section class="complaints-section">
+                <h2>All Complaints</h2>
+                <div id="complaintsContainer" class="complaints-table-container">
+                    <table id="complaintsTable" class="complaints-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Student Name</th>
+                                <th>Room</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Submitted</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="complaintsTableBody">
+                            <tr>
+                                <td colspan="9" class="loading">Loading complaints...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Status Update Modal -->
+    <div id="statusModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeStatusModal()">&times;</span>
+            <h2>Update Complaint Status</h2>
+            
+            <div class="modal-body">
+                <div class="modal-info">
+                    <p><strong>Complaint ID:</strong> <span id="modalComplaintId">-</span></p>
+                    <p><strong>Student:</strong> <span id="modalStudentName">-</span></p>
+                    <p><strong>Issue:</strong> <span id="modalDescription">-</span></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="newStatus">New Status:</label>
+                    <select id="newStatus">
+                        <option value="Pending">Pending</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Resolved">Resolved</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="adminNotes">Admin Notes (Optional):</label>
+                    <textarea id="adminNotes" placeholder="Add any notes or comments..."></textarea>
+                </div>
+
+                <div class="modal-buttons">
+                    <button onclick="saveStatusUpdate()" class="save-btn">Save Update</button>
+                    <button onclick="closeStatusModal()" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Complaint Details Modal -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content modal-large">
+            <span class="close" onclick="closeDetailsModal()">&times;</span>
+            <h2>Complaint Details</h2>
+            
+            <div class="modal-body" id="detailsModalBody">
+                <!-- Details will be loaded here -->
+            </div>
+
+            <div class="modal-buttons">
+                <button onclick="closeDetailsModal()" class="cancel-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-dashboard-script.js"></script>
+</body>
+</html>

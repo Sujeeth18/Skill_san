@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login - HostelOps</title>
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <div class="login-box">
+            <h1>🔐 HostelOps Admin Portal</h1>
+            <p class="subtitle">Complaint Management System</p>
+            
+            <form onsubmit="adminLogin(event)">
+                <div class="form-group">
+                    <label for="adminId">Admin ID</label>
+                    <input type="text" id="adminId" placeholder="Enter Admin ID" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" placeholder="Enter Password" required />
+                </div>
+
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+
+            <div class="demo-info">
+                <p><strong>Demo Credentials:</strong></p>
+                <p>Admin ID: <code>admin001</code></p>
+                <p>Password: <code>Admin@123</code></p>
+            </div>
+
+            <div class="footer-link">
+                <p>Student Access? <a href="index.html">Go to Student Portal</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-login-script.js"></script>
+</body>
+</html>
