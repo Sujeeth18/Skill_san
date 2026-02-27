@@ -12,6 +12,14 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
+// Admin configuration (can be extended via environment variable)
+// Format: ADMIN_USERS=id1:pass1,id2:pass2,...
+const adminString = process.env.ADMIN_USERS || "admin001:Admin@123";
+const admins = adminString.split(",").map(pair => {
+  const [id, pw] = pair.split(":");
+  return { id, pw };
+});
+
 // Complaint Schema
 const ComplaintSchema = new mongoose.Schema({
   studentName: {
@@ -53,6 +61,16 @@ app.post("/api/complaints", async (req, res) => {
   const complaint = new Complaint(req.body);
   await complaint.save();
   res.json(complaint);
+});
+
+// Admin login (simple example using env-configured users)
+app.post("/api/admin/login", (req, res) => {
+  const { adminId, password } = req.body;
+  const user = admins.find(u => u.id === adminId && u.pw === password);
+  if (user) {
+    return res.json({ message: "Login successful" });
+  }
+  res.status(401).json({ message: "Invalid Admin ID or Password" });
 });
 
 // Get all complaints

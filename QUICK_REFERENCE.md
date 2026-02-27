@@ -253,11 +253,13 @@ docker ps | grep backend
 
 ### Issue: Admin Can't Login
 ```bash
-# Verify credentials: admin001 / Admin@123
-# Check browser console for errors (F12)
-# Verify backend running: docker ps
+# Verify credentials: set valid account(s) in backend .env (ADMIN_USERS)
+# Example: ADMIN_USERS=admin001:Admin@123,alice:Secret123
+# Restart backend after editing environment variables.
+# Check browser console for network/fetch errors (F12).
+# Confirm backend is running: docker ps
+# If you see network errors the frontend will fallback to demo credentials.
 ```
-
 ---
 
 ## 🚀 Deployment Checklist
