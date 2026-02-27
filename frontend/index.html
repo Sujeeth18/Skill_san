@@ -7,15 +7,19 @@
 <body>
     <div class="container">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h1 style="margin: 0;">📋 Student Complaint Management System</h1>
-            <a href="admin-login.html" style="padding: 10px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">🔐 Admin Portal</a>
+            <div>
+                <h1 style="margin: 0; font-size: 24px;">📋 Student Complaint Management System</h1>
+                <p style="margin: 5px 0 0 0; color: #666; font-size: 13px;" id="studentInfo"></p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="studentLogout()" style="padding: 10px 20px; background: #ff6b6b; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 14px;">🚪 Logout</button>
+                <a href="admin-login.html" style="padding: 10px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; display: flex; align-items: center;">🔐 Admin Portal</a>
+            </div>
         </div>
 
         <div class="form-section">
             <h2>Add New Complaint</h2>
             <form onsubmit="addComplaint(event)">
-                <input type="text" id="studentName" placeholder="Student Name" required />
-                <input type="text" id="roomNumber" placeholder="Room Number" required />
                 <input type="text" id="complaintText" placeholder="Complaint Description" required />
                 
                 <select id="category">
@@ -43,6 +47,7 @@
         </div>
     </div>
 
+    <script src="auth-script.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

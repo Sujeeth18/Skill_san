@@ -1,5 +1,49 @@
 const API_URL = "http://localhost:5000/api/complaints";
 
+// ============ INITIALIZATION ============
+function init() {
+    // Check student session
+    checkStudentSession();
+    
+    // Display student info
+    displayStudentInfo();
+    
+    // Load complaints
+    loadComplaints();
+    
+    // Auto-refresh every 30 seconds
+    setInterval(loadComplaints, 30000);
+}
+
+// ============ SESSION MANAGEMENT ============
+function checkStudentSession() {
+    const isLoggedIn = localStorage.getItem('studentLoggedIn');
+    if (!isLoggedIn) {
+        window.location.href = 'student-login.html';
+    }
+}
+
+function displayStudentInfo() {
+    const studentName = localStorage.getItem('studentName');
+    const studentRoom = localStorage.getItem('studentRoomNumber');
+    const studentInfo = document.getElementById('studentInfo');
+    if (studentInfo) {
+        studentInfo.textContent = `Welcome, ${studentName} | Room: ${studentRoom}`;
+    }
+}
+
+function studentLogout() {
+    if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('studentLoggedIn');
+        localStorage.removeItem('studentEmail');
+        localStorage.removeItem('studentName');
+        localStorage.removeItem('studentRoomNumber');
+        localStorage.removeItem('studentRollNumber');
+        localStorage.removeItem('studentLoginTime');
+        window.location.href = 'student-login.html';
+    }
+}
+
 // Fetch all complaints
 async function loadComplaints() {
     try {
@@ -65,14 +109,16 @@ async function loadComplaints() {
 async function addComplaint(event) {
     event.preventDefault();
     try {
-        const studentName = document.getElementById("studentName").value;
-        const roomNumber = document.getElementById("roomNumber").value;
         const text = document.getElementById("complaintText").value;
         const category = document.getElementById("category").value;
         const priority = document.getElementById("priority").value;
         
-        if (!studentName.trim() || !roomNumber.trim() || !text.trim()) {
-            alert("Please fill in all fields");
+        // Get student info from session
+        const studentName = localStorage.getItem('studentName');
+        const roomNumber = localStorage.getItem('studentRoomNumber');
+        
+        if (!text.trim()) {
+            alert("Please enter a complaint description");
             return;
         }
 
@@ -92,8 +138,6 @@ async function addComplaint(event) {
 
         if (!response.ok) throw new Error("Failed to add complaint");
 
-        document.getElementById("studentName").value = "";
-        document.getElementById("roomNumber").value = "";
         document.getElementById("complaintText").value = "";
         loadComplaints();
         alert("Complaint submitted successfully!");
@@ -103,4 +147,5 @@ async function addComplaint(event) {
     }
 }
 
-loadComplaints();
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', init);
