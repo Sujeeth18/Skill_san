@@ -1,0 +1,17 @@
+{
+  "name": "hostelops-backend",
+  "version": "1.0.0",
+  "description": "HostelOps Complaint Management Backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Disha Shetty",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.0",
+    "express": "^4.18.2",
+    "mongoose": "^7.6.0"
+  }
+}
